@@ -1,0 +1,30 @@
+<form action="<%= floofs_url %>" method="post">
+    <label for="name">Name</label>
+    <input value="" type="text" name="floof[name]" id="name">
+    <input 
+        type="radio"
+        name="floof[sex]"
+        value="M" 
+        id="floof_sex_male"
+    >
+    <label for="floof_sex_male">Male</label>
+    <input 
+        type="radio"
+        name="floof[sex]"
+        value="F" 
+        id="floof_sex_female"
+    >
+    <label for="floof_sex_female">Female</label>
+    <label for="cat_birth_date">Birth date</label>
+    <input
+        type="date"
+        name="floof[birth_date]"
+        id="birth_date"
+        value="">
+    <br>
+    <label for="description">Description</label>
+    <br>
+    <textarea name="floof[description]"></textarea>
+    <br>
+    <input type="submit" value="Submit">
+</form>
