@@ -21,6 +21,16 @@
         name="floof[birth_date]"
         id="birth_date"
         value="">
+    <label for="color">Color</label>
+    <select name="floof[color]" id="color">
+    <option disabled selected>-- select color --</option>
+        <% Floof::COLORS.each do |color| %>
+        <option
+            value="<%= color %>">
+            <%= color.upcase %>
+        </option>
+        <% end %>
+    </select>
     <br>
     <label for="description">Description</label>
     <br>
