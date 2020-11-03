@@ -23,6 +23,20 @@ class FloofsController < ApplicationController
         end
     end
 
+    def edit
+        @floof = Floof.find(params[:id])
+        render :edit
+    end
+
+    def update
+        @floof = Floof.find(params[:id])
+        if @floof.update_attributes(floof_params)
+            redirect_to floof_url(@floof)
+        else
+            render :edit
+        end
+    end
+
     private
 
     def floof_params
