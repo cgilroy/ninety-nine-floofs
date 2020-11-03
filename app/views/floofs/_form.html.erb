@@ -1,11 +1,17 @@
-<form action="<%= floofs_url %>" method="post">
+<% method = (floof.persisted? ? :patch : :post) %>
+<% action = (floof.persisted? ? floof_url(floof) : floofs_url) %>
+
+<form action="<%= action %>" method="post">
+    <input type="hidden" name="_method" value="<%= method %>">
+    
     <label for="name">Name</label>
-    <input value="" type="text" name="floof[name]" id="name">
+    <input value="<%= floof.name %>" type="text" name="floof[name]" id="name">
     <input 
         type="radio"
         name="floof[sex]"
         value="M" 
         id="floof_sex_male"
+        <%= floof.sex == "M" ? "checked" : "" %>
     >
     <label for="floof_sex_male">Male</label>
     <input 
@@ -13,6 +19,7 @@
         name="floof[sex]"
         value="F" 
         id="floof_sex_female"
+        <%= floof.sex == "F" ? "checked" : "" %>
     >
     <label for="floof_sex_female">Female</label>
     <label for="cat_birth_date">Birth date</label>
@@ -20,13 +27,15 @@
         type="date"
         name="floof[birth_date]"
         id="birth_date"
-        value="">
+        value="<%= floof.birth_date %>">
     <label for="color">Color</label>
     <select name="floof[color]" id="color">
     <option disabled selected>-- select color --</option>
         <% Floof::COLORS.each do |color| %>
         <option
-            value="<%= color %>">
+            value="<%= color %>"
+            <%= color == floof.color ? "selected" : "" %>
+        >
             <%= color.upcase %>
         </option>
         <% end %>
@@ -34,7 +43,7 @@
     <br>
     <label for="description">Description</label>
     <br>
-    <textarea name="floof[description]"></textarea>
+    <textarea name="floof[description]"><%= floof.description %></textarea>
     <br>
     <input type="submit" value="Submit">
 </form>
