@@ -1,0 +1,32 @@
+<form action="<%=floof_rental_requests_url%>" method="post">
+
+    <label for="rental_start_date">Start date</label>
+    <input
+        type="date"
+        name="floof_rental_request[start_date]"
+        id="rental_start_date"
+        value="<%= @rental_request.start_date %>"
+    >
+    <label for="rental_end_date">End date</label>
+    <input
+        type="date"
+        name="floof_rental_request[end_date]"
+        id="rental_end_date"
+        value="<%= @rental_request.end_date %>"
+    >
+    <label for="floof_rental_request_floof_id">Name</label>
+    <select name="floof_rental_request[floof_id]" id="floof_rental_request_id">
+    <option disabled selected>-- select floof --</option>
+        <% Floof.all.each do |floof| %>
+        <option
+            value="<%= floof.id %>"
+           
+        >
+            <%= floof.name.upcase %>
+        </option>
+        <% end %>
+    </select>
+    <br>
+
+    <input type="submit" value="Submit">
+</form>
