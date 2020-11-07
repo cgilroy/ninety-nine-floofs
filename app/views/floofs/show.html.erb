@@ -14,3 +14,23 @@
         <% end %>
     </tr>
 </table>
+<h2>Rental Requests</h2>
+<table>
+    <% @rental_requests = @floof.rental_requests %>
+    <tr>
+        <% @rental_requests.first.attributes.each do |k,v| %>
+            <th>
+                <%= k %>
+            </th>
+        <% end %>
+    </tr>
+    <% @rental_requests.each do |rental_request| %>
+    <tr>
+        <% rental_request.attributes.each do |k,v| %>
+            <th>
+                <%= v %>
+            </th>
+        <% end %>
+    </tr>
+    <% end %>
+</table>
