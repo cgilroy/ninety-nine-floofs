@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+f1 = Floof.create(:name=>'Ollie',:birth_date=>'2015-04-15',:color=>'cream',:sex=>'M',:description=>'Best lil guy')
+f2 = Floof.create(:name=>'Riley',:birth_date=>'2017-09-17',:color=>'white',:sex=>'F',:description=>'Riley pup!')
+f3 = Floof.create(:name=>'Bear',:birth_date=>'2019-08-01',:color=>'brown',:sex=>'M',:description=>'Little bear boy!')
+
+req_1 = FloofRentalRequest.create(:floof_id=>f1.id,:start_date=>'2020-11-10',:end_date=>'2020-11-14')
