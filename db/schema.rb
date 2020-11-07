@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_165038) do
+ActiveRecord::Schema.define(version: 2020_11_07_181958) do
+
+  create_table "floof_rental_requests", force: :cascade do |t|
+    t.integer "floof_id", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.string "status", default: "PENDING", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["floof_id"], name: "index_floof_rental_requests_on_floof_id"
+  end
 
   create_table "floofs", force: :cascade do |t|
     t.date "birth_date", null: false
