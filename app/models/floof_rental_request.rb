@@ -6,10 +6,25 @@ class FloofRentalRequest < ApplicationRecord
 
     belongs_to :floof
 
+    def approve!
+        if self.status == 'PENDING'
+            FloofRentalRequest.transaction do
+                self.status = 'APPROVED'
+                self.save!
+                overlapping_pending_requests.each do |request|
+                    request.status = 'DENIED'
+                end
+            end
+        end
+    end
+
+    def deny!
+        self.status = 'DENIED'
+    end
 
     
     private
-    
+
     def overlapping_requests
         FloofRentalRequest.where.not(id: self.id)
         .where(floof_id: self.floof_id)
@@ -19,6 +34,10 @@ class FloofRentalRequest < ApplicationRecord
 
     def overlapping_approved_requests
         overlapping_requests.where(status: 'APPROVED')
+    end
+
+    def overlapping_pending_requests
+        overlapping_requests.where(status: 'PENDING')
     end
 
     def does_not_overlap_approved_request
