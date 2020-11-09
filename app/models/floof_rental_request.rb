@@ -12,7 +12,7 @@ class FloofRentalRequest < ApplicationRecord
                 self.status = 'APPROVED'
                 self.save!
                 overlapping_pending_requests.each do |request|
-                    request.status = 'DENIED'
+                    request.update!(status: 'DENIED')
                 end
             end
         end
@@ -20,6 +20,7 @@ class FloofRentalRequest < ApplicationRecord
 
     def deny!
         self.status = 'DENIED'
+        self.save!
     end
 
     
